@@ -1,4 +1,4 @@
-<div class="layout-topbar">
+<!-- <div class="layout-topbar">
    
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()" title="Toggle Menu">
@@ -15,17 +15,38 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-calendar"></i>
-            <span>Calendar</span>
-        </button>
+        
         <button class="p-link layout-topbar-button">
             <i class="pi pi-user"></i>
             <span>Profile</span>
         </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
-            <i class="pi pi-cog"></i>
-            <span>Settings</span>
+       
+    </div>
+</div> -->
+
+
+<div class="layout-topbar">
+    
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()" title="Toggle Menu">
+        <i class="pi pi-bars"></i>
+    </button>
+
+    <a class="layout-topbar-logo" >
+        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
+        <span>Magic</span>
+    </a>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()" title="Show Profile Sidebar">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <!-- Profile Dropdown -->
+        <p-menu #menu [popup]="true" [model]="profileMenuItems" appendTo="body"></p-menu>
+        <button class="p-link layout-topbar-button" (click)="menu.toggle($event)">
+            <i class="pi pi-user"></i>
+            <span>Profile</span>
+           
         </button>
     </div>
 </div>
